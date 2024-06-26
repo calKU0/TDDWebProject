@@ -53,6 +53,6 @@ public class ProductCatalogTest {
     }
 
     private static ProductCatalog thereIsProductCatalog() {
-        return new ProductCatalog();
+        return new ProductCatalog(new ArrayListProductStorage());
     }
 }
