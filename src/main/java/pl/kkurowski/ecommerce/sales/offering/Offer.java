@@ -1,4 +1,4 @@
-package pl.kkurowski.ecommerce.sales;
+package pl.kkurowski.ecommerce.sales.offering;
 
 import java.math.BigDecimal;
 

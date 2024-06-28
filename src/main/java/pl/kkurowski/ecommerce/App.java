@@ -8,6 +8,11 @@ import pl.kkurowski.ecommerce.catalog.ArrayListProductStorage;
 import pl.kkurowski.ecommerce.catalog.ProductCatalog;
 import pl.kkurowski.ecommerce.sales.SalesFacade;
 import pl.kkurowski.ecommerce.sales.cart.HashMapCartStorage;
+import pl.kkurowski.ecommerce.sales.offering.OfferCalculator;
+import pl.kkurowski.ecommerce.sales.payment.PaymentDetails;
+import pl.kkurowski.ecommerce.sales.payment.PaymentGateway;
+import pl.kkurowski.ecommerce.sales.payment.RegisterPaymentRequest;
+import pl.kkurowski.ecommerce.sales.reservation.ReservationRepository;
 
 import java.math.BigDecimal;
 
@@ -32,6 +37,16 @@ public class App {
 
     @Bean
     SalesFacade createSales() {
-        return new SalesFacade(new HashMapCartStorage());
+        return new SalesFacade(
+                new HashMapCartStorage(),
+                new OfferCalculator(),
+                new PaymentGateway() {
+                    @Override
+                    public PaymentDetails registerPayment(RegisterPaymentRequest registerPaymentRequest) {
+                        return null;
+                    }
+                },
+                new ReservationRepository()
+        );
     }
 }

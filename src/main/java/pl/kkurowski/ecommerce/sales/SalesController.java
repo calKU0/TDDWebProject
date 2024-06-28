@@ -1,6 +1,9 @@
 package pl.kkurowski.ecommerce.sales;
 
 import org.springframework.web.bind.annotation.*;
+import pl.kkurowski.ecommerce.sales.offering.Offer;
+import pl.kkurowski.ecommerce.sales.reservation.AcceptOfferRequest;
+import pl.kkurowski.ecommerce.sales.reservation.ReservationDetails;
 
 @RestController
 public class SalesController {
