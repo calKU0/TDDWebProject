@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.kkurowski.ecommerce.catalog.ArrayListProductStorage;
 import pl.kkurowski.ecommerce.catalog.ProductCatalog;
+import pl.kkurowski.ecommerce.sales.SalesFacade;
 
 import java.math.BigDecimal;
 
@@ -26,5 +27,10 @@ public class App {
         catalog.changePrice(pid2, BigDecimal.valueOf(50.10));
 
         return catalog;
+    }
+
+    @Bean
+    SalesFacade createSales() {
+        return new SalesFacade();
     }
 }
