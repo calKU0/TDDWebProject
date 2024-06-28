@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import pl.kkurowski.ecommerce.catalog.ArrayListProductStorage;
 import pl.kkurowski.ecommerce.catalog.ProductCatalog;
 import pl.kkurowski.ecommerce.sales.SalesFacade;
+import pl.kkurowski.ecommerce.sales.cart.HashMapCartStorage;
 
 import java.math.BigDecimal;
 
@@ -31,6 +32,6 @@ public class App {
 
     @Bean
     SalesFacade createSales() {
-        return new SalesFacade();
+        return new SalesFacade(new HashMapCartStorage());
     }
 }

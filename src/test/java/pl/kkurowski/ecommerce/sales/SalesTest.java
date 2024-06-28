@@ -1,6 +1,7 @@
 package pl.kkurowski.ecommerce.sales;
 
 import org.junit.jupiter.api.Test;
+import pl.kkurowski.ecommerce.sales.cart.HashMapCartStorage;
 
 import java.math.BigDecimal;
 
@@ -21,12 +22,20 @@ public class SalesTest {
 
     @Test
     void itAddsProductToCart() {
+        String productId = thereIsExampleProduct("X", BigDecimal.valueOf(10));
+        String customerId = thereIsCustomer("Kuba");
+        SalesFacade sales = thereIsSales();
 
+        sales.addProduct(customerId, productId);
+
+        Offer offer = sales.getCurrentOffer(customerId);
+
+        assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(10));
+        assertThat(offer.getItemsCount()).isEqualTo(1);
     }
 
-    @Test
-    void itAcceptCustomersCurrentOffer() {
-
+    private String thereIsExampleProduct(String name, BigDecimal price) {
+        return name;
     }
 
     @Test
@@ -35,7 +44,7 @@ public class SalesTest {
     }
 
     private SalesFacade thereIsSales() {
-        return new SalesFacade();
+        return new SalesFacade(new HashMapCartStorage());
     }
 
     private String thereIsCustomer(String name) {
